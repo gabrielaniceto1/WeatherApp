@@ -96,7 +96,9 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
             String temp_min_value = "Temp. mín: " +
                     Utils.getCelsiusTemperatureFromKevin(weather.getMain().getTemp_min());
             temp_min.setText(temp_min_value);
-            String pressure_value = "Pressão: " + 1008.2 + "hPa";
+            // Display the API-provided pressure instead of a hard-coded placeholder,
+            // rounding it because OpenWeather reports pressure in whole hPa values.
+            String pressure_value = "Pressão: " + Math.round(weather.getMain().getPressure()) + " hPa";
             pressure.setText(pressure_value);
             String humidity_value = "Umidade: " + weather.getMain().getHumidity() + "%";
             humidity.setText(humidity_value);
