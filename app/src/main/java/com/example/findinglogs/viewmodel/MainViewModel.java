@@ -77,4 +77,7 @@ public class MainViewModel extends AndroidViewModel {
     public void retrieveForecast(String latLon, WeatherCallback callback) {
         mRepository.retrieveForecast(latLon, callback);
     }
+    public void refreshWeather() {
+        fetchAllForecasts();
+    }
 }

@@ -27,16 +27,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+
         RecyclerView recyclerView = findViewById(R.id.recycler_view_weather);
+
         fetchButton = findViewById(R.id.fetchButton);
+
         adapter = new WeatherListAdapter(this, weathers);
         recyclerView.setAdapter(adapter);
-        mainViewModel.getWeatherList().observe(this,
-                weathers -> adapter.updateWeathers(weathers));
 
-        fetchButton.setOnClickListener(v ->
-                Toast.makeText(MainActivity.this, "Not Implemenented yet",
-                Toast.LENGTH_SHORT).show());
+        mainViewModel.getWeatherList().observe(this,
+                weatherList -> adapter.updateWeathers(weatherList));
+
+        fetchButton.setOnClickListener(v ->mainViewModel.refreshWeather());
     }
 }
